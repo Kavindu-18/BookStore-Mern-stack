@@ -1,19 +1,10 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import { mongoDBURL, PORT } from './config.js';
-import { Book } from './models/bookModel.js';
+import {Book} from '../models/bookModel.js';
+
+const router = express.router();
 
 
-const app = express();
-
-app.use(express.json());
-
-app.get('/', (request, response) => {
-    console.log(request);
-    return response.status(234).send('Hello World!');
-});
-
-app.post('/books',async (request, response) => {
+router.post('/books',async (request, response) => {
 
     try {
         if(
@@ -45,7 +36,7 @@ app.post('/books',async (request, response) => {
 
 //routing to get all books from database
 
-app.get('/books/', async (request, response) => {
+router.get('/books/', async (request, response) => {
     try{
         const books = await Book.find({});
 
@@ -62,7 +53,7 @@ app.get('/books/', async (request, response) => {
 
 //routing to get all books from database by id
 
-app.get('/books/:id', async (request, response) => {
+router.get('/books/:id', async (request, response) => {
     try{
 
         const { id } = request.params;
@@ -80,7 +71,7 @@ app.get('/books/:id', async (request, response) => {
 
 
 //Routing to update Book
-app.put('/books/:id', async (request, response) => {
+router.put('/books/:id', async (request, response) => {
     try{
         if(
             !request.body.title ||
@@ -107,7 +98,7 @@ app.put('/books/:id', async (request, response) => {
 });
 
 //route for deleting book
-app.delete('/books/:id', async (request, response) => {
+router.delete('/books/:id', async (request, response) => {
     try{
         const {id}=request.params;
 
@@ -123,21 +114,3 @@ app.delete('/books/:id', async (request, response) => {
         response.status(500).send({message: error.message});
     }
 });
-
-
-
-
-
-mongoose.connect(mongoDBURL)
-.then(() => {
-    console.log('MongoDB connected successfully');
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-
-})
-
-.catch((error) => {
-    console.log(error);
-});
-
