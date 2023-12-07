@@ -12,13 +12,13 @@ app.use(express.json());
 
 //CORS POLICY
 
-app.use(
+/*app.use(
     cors({
         origin:'http://localhost:5555/',
         methods:['GET','POST','PUT','DELETE'],
         allowedHeaders:['Content-Type'],
     })
-)
+)*/
 
 app.get('/', (request, response) => {
     console.log(request);
