@@ -14,14 +14,12 @@ publishYear:{
     required: true,
 },
 
-},
-
-{
-    timestamps: true,
 }
+
+
 );
 
 
 
 
-export const Book = mongoose.model('Cat', {name: String});
+export const Book = mongoose.model('Cat',bookSchema);

@@ -8,7 +8,7 @@ export default router;
 
 
 
-router.post('/',async (request, response) => {
+router.post('/add',async (request, response) => {
 
     try {
         if(
@@ -40,14 +40,14 @@ router.post('/',async (request, response) => {
 
 //routing to get all books from database
 
-router.get('/', async (request, response) => {
+router.get('/all', async (request, response) => {
     try{
         const books = await Book.find({});
 
         return response.status(200).send(books);
 
-        count:books.length;
-        data:books;
+        //count:books.length;
+        //data:books;
 
     }catch(error){
         console.log(error.message);
@@ -75,7 +75,7 @@ router.get('/:id', async (request, response) => {
 
 
 //Routing to update Book
-router.put('/', async (request, response) => {
+router.put('/update', async (request, response) => {
     try{
         if(
             !request.body.title ||
@@ -102,7 +102,7 @@ router.put('/', async (request, response) => {
 });
 
 //route for deleting book
-router.delete('/', async (request, response) => {
+router.delete('/delete', async (request, response) => {
     try{
         const {id}=request.params;
 

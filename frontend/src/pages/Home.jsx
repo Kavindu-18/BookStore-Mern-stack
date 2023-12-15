@@ -8,15 +8,16 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 
 const Home = () => {
 
-    const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([""]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/api/books')
+            .get('http://localhost:5555/books/all')
             .then((response) => {
-                setBooks(response.data.data);
+                setBooks(response.data);
+                console.log(response.data)
                 setLoading(false);
             })
             .catch((error) => {
@@ -43,15 +44,17 @@ const Home = () => {
                 <table className=' w-full boarder-separate boarder-spacing-2'>
                     <thead>
                         <tr>
-                        <th className='boarder boarder-slate-600 rounded-md'>No</th>
-                        <th className='boarder boarder-slate-600 rounded-md'>Title</th>
-                        <th className='boarder boarder-slate-600 rounded-md max-md:hidden'>Author</th>
-                        <th className='boarder boarder-slate-600 rounded-md max-md:hidden'>Publish year</th>
-                        <th className='boarder boarder-slate-600 rounded-md'>Opereations</th>
+                            <th className='boarder boarder-slate-600 rounded-md'>No</th>
+                            <th className='boarder boarder-slate-600 rounded-md'>Title</th>
+                            <th className='boarder boarder-slate-600 rounded-md max-md:hidden'>Author</th>
+                            <th className='boarder boarder-slate-600 rounded-md max-md:hidden'>Publish year</th>
+                            <th className='boarder boarder-slate-600 rounded-md'>Opereations</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {books.map((book, index) => (
+
+                      
+                        {books && books.map((book, index) => (
 
                             <tr key={book._id} className='h-8'>
                                 <td className='boarder boarder-slate-700 rounded-md text-centre'>
@@ -82,15 +85,15 @@ const Home = () => {
                                 </td>
                             </tr>
 
-                        
+
 
 
                         ))}
-                        
-                        
+
+
                     </tbody>
-                     
-                    
+
+
 
                 </table>
             )}
