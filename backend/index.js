@@ -21,7 +21,7 @@ app.use(express.json());
     })
 )*/
 
-app.use(cors());
+//app.use(cors());
 
 app.get('/', (request, response) => {
     console.log(request);
