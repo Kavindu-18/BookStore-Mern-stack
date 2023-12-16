@@ -41,7 +41,7 @@ const Home = () => {
             {loading ? (
                 <Spinner />
             ) : (
-                <table className=' w-full boarder-separate boarder-spacing-2'>
+                <table className=' w-full border-separate border-spacing-2 text-center'>
                     <thead>
                         <tr>
                             <th className='border border-slate-600 rounded-md'>No</th>

@@ -7,7 +7,7 @@ const router = express.Router();
 export default router;
 
 
-
+//adding a book
 router.post('/add',async (request, response) => {
 
     try {
@@ -75,7 +75,7 @@ router.get('/:id', async (request, response) => {
 
 
 //Routing to update Book
-router.put('/update', async (request, response) => {
+router.put('/update/:id', async (request, response) => {
     try{
         if(
             !request.body.title ||
@@ -102,7 +102,7 @@ router.put('/update', async (request, response) => {
 });
 
 //route for deleting book
-router.delete('/delete', async (request, response) => {
+router.delete('/delete/:id', async (request, response) => {
     try{
         const {id}=request.params;
 
